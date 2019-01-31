@@ -12,6 +12,8 @@
 # below:
 .git
 .gitignore
+composer.lock
+.env
 
 # PHP Composer dependencies:
 vendor/
