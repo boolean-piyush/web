@@ -1,0 +1,37 @@
+runtime: php72
+
+handlers:
+# Serve a directory as a static resource.
+
+- url: /favicon\.ico
+  static_files: public/favicon.ico
+  upload: public/favicon\.ico
+
+- url: /sitemap\.xml
+  static_files: public/sitemap.xml
+  upload: public/sitemap\.xml
+
+- url: /robots\.txt
+  static_files: public/robots.txt
+  upload: public/robots\.txt
+
+- url: /images/(.*\.(jpg$|png$|gif$))
+  static_files: public/images/\1
+  upload: public/images/(.*\.(jpg$|png$|gif$))
+
+- url: /css/(.*\.(css$))
+  static_files: public/css/\1
+  upload: public/css/(.*\.(css$))
+
+- url: /js/(.*\.(js$))
+  static_files: public/js/\1
+  upload: public/js/(.*\.(js$))
+
+env_variables:
+  # Put production environment variables here.
+  LOG_CHANNEL: stackdriver
+  APP_KEY: base64:mnBAkDLH1VTo9cRqtSy+FkhmABSAN2rAhStMbP3FGvQ=
+  APP_STORAGE: /tmp
+  # CLOUDSQL_USER: root
+  # CLOUDSQL_PASSWORD: examdate90
+  # CLOUDSQL_DSN: "mysql:dbname=test;unix_socket=/cloudsql/project-examdate:asia-south1:mysql-for-examdate"

@@ -1,0 +1,70 @@
+body{
+    font-family: 'Quattrocento Sans';
+  }
+
+  .loader {
+    background: url('/images/loading1.gif');
+    background-color: white;
+    background-repeat: no-repeat;
+    background-position: right;
+    background-size: 35px 35px;
+  }
+
+.header-bar{
+  background: url('/images/navbar_img.jpg');
+}
+
+.footer-bar{
+  background-color: #302016;
+}
+
+  .nav-link:hover{
+    text-decoration: underline;
+  }
+  .navbar-brand{
+    font-size: 35px;
+    font-weight: 600;
+    font-family: 'Amita';
+  }
+
+.highlight-red{
+  font-weight:700!important;
+  color:red;
+}
+
+  .red{
+    color:red;
+  }
+  .white{
+    color: white;
+  }
+  .blue{
+    color:blue;
+  }
+  .green{
+    color:green;
+  }
+  .main-heading{
+    color: #af0622;
+    background-color:#a2d1f7;
+    border-radius:.25rem!important;
+    text-align:center!important
+  }
+  .heading{
+    color:white;
+    background-color: green;
+    border-radius:.25rem!important;
+    text-align:center!important
+  }
+  .strip-color-dark{
+    background-color: #f8f9fa;
+  }
+  .list-group-item{
+    padding: 1px;
+  }
+  .homepage-exams{
+    color: #1509FD;
+  }
+  .homepage-exams:hover{
+    text-decoration: underline;
+  }
