@@ -6,5 +6,4 @@
 /resources/views/develop
 /.idea
 /.vagrant
-/composer.lock
 .env
