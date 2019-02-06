@@ -76,8 +76,9 @@ export default {
          var now = new Date();
          var year = String(now.getFullYear());
          var month = now.getMonth() + 1;
-         var date = String(now.getDate());
+         var date = now.getDate();
          if(month < 10) month = "0" + String(month);
+         if(date < 10) date = "0" + String(date);
          console.log((year+'-'+month+'-'+date));
          return (year+'-'+month+'-'+date);
        }

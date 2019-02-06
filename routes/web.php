@@ -47,6 +47,10 @@ if (str_is($str, 'https://localhost')) {
         return view('develop.suspended');
     });
 
+    Route::get('/cagr', function () {
+        return view('develop.cagr');
+    });
+
     Route::get('/get-depts', "SearchController@get_depts");
     
 }

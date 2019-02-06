@@ -16,6 +16,7 @@ class ExamController extends Controller
     public function updation(){
 
         $exams = Exam::where('next_check','<=', date("Y-m-d"))
+        ->WhereNull('completed_on')
         ->orderBy('exam_name')
         ->get();
         return view ('develop.list-exams', compact('exams'));
@@ -43,6 +44,8 @@ class ExamController extends Controller
         echo "<h4><b>Exam Modified Successfully</b></h4>";
 
         echo "<a href=\"/list-exams\">List Exam Homepage</a>";
+        echo "<br>";
+        echo "<a href=\"/today-updation\">Today Updation</a>";
 
         return dd($_REQUEST);
     }

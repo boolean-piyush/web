@@ -16,9 +16,10 @@ require('./bootstrap');
             var goto = ui.item.value;                
         },
 })    .data("ui-autocomplete")._renderItem = function(ul, item) {
+        var link_name = item.label.replace(/-/g, " ");
         return $("<li class=\"list-item-group border rounded\"></li>")
             //.data("item.autocomplete", item)
-            .append("<a style=\"color:blue\" href=\"/exams/" + item.label +  "\">" + item.label + "</a>")
+            .append("<a style=\"color:blue\" href=\"/exams/" + item.label +  "\">" + link_name + "</a>")
             .appendTo(ul);
         };
 

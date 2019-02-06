@@ -1,16 +1,14 @@
-@extends('layout')
-
-@section('title')
+<?php $__env->startSection('title'); ?>
     UPSSSC Junior Engineer (JE) 2018
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('meta')
+<?php $__env->startSection('meta'); ?>
     Uttar Pradesh Subordinate Services Selection Commission (UPSC) Job 2018
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 
-@php
+<?php
 
     $exam_links=array(
 
@@ -37,7 +35,7 @@
                 target=\"_blank\">" .$exam_links[0][0]. " -->  <b>[Click Here]</b></a>
                 </ul><br>";
 
-@endphp
+?>
 
 <h2 class="text-center main-heading">
         Combined Junior Engineer (JE), Computer and Foreman (General Recruitment) 
@@ -815,4 +813,5 @@
         
         ?>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

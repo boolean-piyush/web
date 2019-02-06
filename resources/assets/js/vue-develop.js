@@ -28,8 +28,11 @@ const app3 = new Vue({
         user_mobile:"",
         user_email:"",
         last_date:new Date(),
-        widtho:"Hello its piyush",
-        wid_value:0,
+        principle: 0,
+        cagr: 0,
+        time: 0,
+        amount:0,
+        interest:0,
 
         new_dept:false,
         homepage_href:"",
@@ -91,11 +94,30 @@ const app3 = new Vue({
        getDate(){
         var year = String(this.last_date.getFullYear());
         var month = this.last_date.getMonth();
-        var date = String(this.last_date.getDate());
+        var date = this.last_date.getDate();
         month +=1;
         if(month < 10) month = "0" + String(month);
+        if(date < 10) date = "0" + String(date);
         return (year+'-'+month+'-'+date);
-       }
+       },
+
+       calculate_cagr(){
+           var time = Number(this.time);
+           this.amount = 0;
+           this.interest = 0;
+           for (let i = time ; i>0 ; i--) {
+            this.amount += this.principle * Math.pow((1 + (this.cagr / 100)), i);
+            console.log(this.amount);
+           }
+           this.interest = this.amount - (this.principle * time);
+           this.interest = this.interest.toFixed(2);
+           this.amount = this.amount.toFixed(2);
+       },
+
+       final_cagr(){
+        var time = Number(this.time);
+        return ((Math.pow(this.amount / (this.principle* time) , 1/time) - 1) * 100).toFixed(2);
+    }
    },
    computed: {
        validate_user_email(){

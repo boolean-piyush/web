@@ -57,6 +57,7 @@ const app= new Vue({
 
     methods: {
         check_suspensions(){
+            this.suspends = [];
             this.recents.forEach(this.myFunction);
             this.most_viewed.forEach(this.myFunction);
             this.marquees.forEach(this.myFunction);
@@ -66,9 +67,11 @@ const app= new Vue({
             var present_date = new Date();
             var year = String(present_date.getFullYear());
             var month = present_date.getMonth() + 1;
-            var date = String(present_date.getDate());
-
+            var date = present_date.getDate();
+            
             if(month < 10) month = "0" + String(month);
+            if(date < 10) date = "0" + String(date);
+
             present_date = year+'-'+month+'-'+date;
             if(value[3] < present_date) this.suspends.push([value[0], value[1]]);
         }

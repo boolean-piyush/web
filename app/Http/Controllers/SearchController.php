@@ -29,8 +29,7 @@ class SearchController extends Controller
                             
             $results = array();
             foreach ($posts as $post) {
-                $name = ucwords(str_replace("-"," ",$post->exam_name));
-                $results[]=['value' =>$name];
+                $results[]=['value' =>$post->exam_name];
             }
             if(count($results)==0){
                 $results[]=['value' => "Sorry! Found Nothing"];
