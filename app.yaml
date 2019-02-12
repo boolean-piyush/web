@@ -32,6 +32,6 @@ env_variables:
   LOG_CHANNEL: stackdriver
   APP_KEY: base64:mnBAkDLH1VTo9cRqtSy+FkhmABSAN2rAhStMbP3FGvQ=
   APP_STORAGE: /tmp
-  # CLOUDSQL_USER: root
-  # CLOUDSQL_PASSWORD: examdate90
-  # CLOUDSQL_DSN: "mysql:dbname=test;unix_socket=/cloudsql/project-examdate:asia-south1:mysql-for-examdate"
+  CLOUDSQL_USER: root
+  CLOUDSQL_PASSWORD: examdate90
+  CLOUDSQL_DSN: "mysql:dbname=test;unix_socket=/cloudsql/project-examdate:asia-south1:mysql-for-examdate"
