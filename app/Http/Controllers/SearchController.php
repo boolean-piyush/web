@@ -35,6 +35,11 @@ class SearchController extends Controller
                 $results[]=['value' => "Sorry! Found Nothing"];
             }
             return response()->json($results);
+
+                // $results = $this->database($search, 1);
+                // return response()->json($results);
+
+
         }
     }
 
@@ -64,8 +69,24 @@ class SearchController extends Controller
         $depts = array();
         foreach ($result as $dept) {
             array_push($depts, $dept);
-            // $depts[]=['value' =>$dept];
         }
         return response()->json($depts);
     }
+
+    // public function database($search, $index){
+    //     $exams = [
+    //         ["hello", "piyush"],
+    //         ["hello1", "piyush1"],
+    //         ["hello2", "piyush2"]
+    //     ];
+
+    //     $results=[];
+
+    //     foreach ($exams as $exam) {
+    //         if(preg_match("%$search%", $exam[$index])){
+    //             $results[]=['value' =>$exam[0]];
+    //         }
+    //       }
+    //     return $results;
+    // }
 }

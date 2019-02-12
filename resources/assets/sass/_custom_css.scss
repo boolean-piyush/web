@@ -52,18 +52,17 @@ body{
   }
   .heading{
     color:white;
-    background-color: green;
+    background-color: #008055;
     border-radius:.25rem!important;
-    text-align:center!important
+    text-align:center!important;
+    padding: 3px;
   }
   .strip-color-dark{
     background-color: #f8f9fa;
   }
-  .list-group-item{
-    padding: 1px;
-  }
   .homepage-exams{
-    color: #1509FD;
+    color: #048;
+    font-weight: bold;
   }
   .homepage-exams:hover{
     text-decoration: underline;

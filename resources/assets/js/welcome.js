@@ -37,7 +37,7 @@ const app= new Vue({
 
             ["UPSEE Online Form 2019", "/exams/upsee-2019", true, "2019-03-15"],
             
-            ["UPSSSC Junior Engineer (JE) 2018", "/exams/UPSSSC-Junior-Engineer-JE-2018", false, "2018-12-07"],
+            ["UPSSSC Junior Engineer (JE) Admit Card 2018", "/exams/UPSSSC-Junior-Engineer-JE-2018", false, "2018-12-07"],
 
             ["NTA NEET Form Correction 2019", "/exams/MHRD-NTA-NEET-UG-2019", false, "2019-01-31"],
             
