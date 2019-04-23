@@ -3,8 +3,5 @@
 /public/storage
 /storage/*.key
 /vendor
-/resources/views/develop
-/public/develop
 /.idea
 /.vagrant
-.env
