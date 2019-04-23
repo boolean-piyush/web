@@ -3,10 +3,38 @@
 namespace App\Http\Controllers;
 
 use App\Exam;
+use App\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ExamController extends Controller
 {
+
+    public function testing(){
+
+        // $time_start = microtime(true);
+        // $time_end = microtime(true);
+
+
+        $exams = DB::table('exams')->get();
+
+        foreach ($exams as $exam) {
+            Category::create([
+                'name' => $exam->exam_name,
+                'category' => $exam->dept,
+            ]);
+        }
+
+        dd($exams);
+
+        // date_default_timezone_set("Asia/Kolkata");
+        // date_format($exam->updated_at, DATE_W3C);
+
+        // dd(date(DATE_W3C));
+        // dd(date_default_timezone_get());
+        // dd(date_create(date(DATE_W3C)));
+    }
+
     public function index(){
 
         $exams = Exam::orderBy('exam_name')->get();  //fetches all exams from the table
@@ -30,6 +58,7 @@ class ExamController extends Controller
 
     public function update($id)
     {
+        date_default_timezone_set("Asia/Kolkata");
         $exam = Exam::findOrFail($id);
 
         $exam->exam_name = request('exam_name');
@@ -38,7 +67,6 @@ class ExamController extends Controller
         $exam->next_check = request('next_check');
         $exam->status = request('status');
         $exam->completed_on = request('completed_on');
-        $exam->updated_at = now();
         $exam->save();
 
         echo "<h4><b>Exam Modified Successfully</b></h4>";

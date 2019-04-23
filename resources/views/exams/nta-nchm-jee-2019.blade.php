@@ -15,7 +15,7 @@
 <div id="main_heading"><h2 class="text-center main-heading">
 	NTA NCHM JEE-2019<br>
 <u>
-NATIONAL COUNCIL FOR HOTEL MANAGEMENT (NCHM)
+National Council For Hotel Management (NCHM)
 </u>
 
 </h2>

@@ -11,7 +11,8 @@ class RouteController extends Controller
 {
     public function exam_router(Request $request){
         $str = explode('/',$request->path());
-        $examName = $str[count($str)-1];
+        $examName = array_pop($str);
+        
         if (View::exists('exams.'.$examName)) {
             return view('exams.'.$examName);
         }

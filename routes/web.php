@@ -1,14 +1,13 @@
 <?php
 use App\Data;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Route::get('/exams/{exam}', 'RouteController@exam_router' );
 Route::get('/category/{exam}', 'RouteController@dept_router' );
+Route::get('/live_search','SearchController@liveSearch');
+Route::get('/', function () { return view('welcome'); });
+Route::get('/about-us', function () { return view('about-us'); });
+Route::get('/disclaimer', function () { return view('disclaimer'); });
 
-// [START] Routes for database management
 
 $str = url('/');
 
@@ -38,6 +37,10 @@ if (str_is($str, 'https://localhost')) {
     });
     Route::post('/test', "ExamCreator@test");
 
+    Route::get('/test3', function () {
+        return view('develop.test3');
+    });
+
 
     Route::get('/test1', function () {
         return view('develop.test1');
@@ -52,18 +55,20 @@ if (str_is($str, 'https://localhost')) {
     });
 
     Route::get('/get-depts', "SearchController@get_depts");
+
+    
+    Route::get('/todo', function () {
+        return view('develop.todo');
+    });
+
+    Route::get('/sarkari-xml', function () {
+        return view('develop.sarkari-xml');
+    });
+    Route::get('/sarkari', "ScanRivals@scan_rival_sites");
+
+    Route::get('/get-todos','SearchController@get_todos');
     
 }
 else {
 }
 
-// [END] Routes for database management
-Route::get('/live_search','SearchController@liveSearch');
-
-Route::get('/about-us', function () {
-    return view('about-us');
-});
-
-Route::get('/disclaimer', function () {
-    return view('disclaimer');
-});

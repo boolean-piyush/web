@@ -10,7 +10,7 @@
       <div class="border border-success rounded" id="0">
          <h4><b>Calculate Maturity Amount of multiple FD's having decrementing term period by 1 like 15, 14, 13 till 1 year</b></h4><br>
             <div class="input-group">
-                  <label>Initial Value <input type="text" class="form-control" v-model="initial[0]"></label>
+                  <label>FD Amount <input type="text" class="form-control" v-model="initial[0]"></label>
                   <label>CAGR <input type="text" class="form-control" v-model="cagr[0]"></label>
                   <label>Time Period <input type="text" class="form-control" v-model="time[0]"></label>
                </div>
@@ -60,7 +60,7 @@
                            <label>Time Period <input type="text" class="form-control" v-model="time[3]"></label>
                         </div>
                         <div>
-                           <h4><b>CAGR= <span class="green">{{reverse_cagr(initial[3], time[3], cagr[3]).toFixed(2)}}</span></b></h4>
+                           <h4><b>Maturity Amount= <span class="green">{{reverse_cagr(initial[3], time[3], cagr[3])}}</span></b></h4>
                         </div>   
                </div><br><br><br>
 
@@ -109,8 +109,27 @@ const app = new Vue({
            this.amount.splice(0, 1, amount.toFixed(2));
        },
 
+       calculate_cagr(principle, amount, time){
+            time = Math.round(time);
+            principle = Number(principle);
+            amount = Number(amount);
+
+            return ((Math.pow(amount/principle , 1/time) - 1) * 100).toFixed(2);
+    },
+      calculate_time(initial, amount, cagr){
+            amount = Number(amount);
+            initial = Number(initial);
+            cagr = Number(cagr);
+
+            var y = (100 + cagr) / 100;
+            var x = amount / initial;
+            return (Math.log(x)/ Math.log(y)).toFixed(2);
+         },
+
        reverse_cagr(initial, time, cagr){
-          return initial * Math.pow((1 + (cagr / 100)), time);
+          initial = Number(initial);
+          time = Math.round(time);
+          return (initial * Math.pow(1 + (cagr / 100), time)).toFixed(2);
        },
 
        calculate_rent(){
@@ -129,25 +148,6 @@ const app = new Vue({
             return total_rent.toFixed(2);
 
        },
-
-      calculate_cagr(principle, amount, time){
-            time = Number(time);
-            principle = Number(principle);
-            amount = Number(amount);
-            if(amount == 0) {
-               return 0;
-            }
-            else {
-               return ((Math.pow(amount / (principle) , 1/time) - 1) * 100).toFixed(2);
-            }
-    },
-    calculate_time(initial, amount, cagr){
-            amount = Number(amount);
-            initial = Number(initial);
-            var y = (100 + Number(cagr)) / 100;
-            var x = amount / initial;
-            return (Math.log(x)/ Math.log(y)).toFixed(2);
-         }
    },
 });
 </script>

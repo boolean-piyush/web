@@ -10,6 +10,8 @@ Vue.component('font-awesome-icon', FontAwesomeIcon);
 import Datepicker from 'vuejs-datepicker';
 Vue.component('date-picker', Datepicker);
 
+// Vue.component('v-autocomplete', require('./components/autocomplete.vue'));
+
 // window.Vuex = require('vuex');
 // Vue.use(Vuex);
 
@@ -20,8 +22,9 @@ const app3 = new Vue({
         payload: 'Nothing',
         qualification_value: "Graduation",
         qualifications: ["High School", "Intermediate", "Graduation", "Diploma"],
-        depts: ["Railway", "Bank", "New"],
-        dept_values: [],
+        depts: [],
+        new_category:"",
+    
         rawhtml: "",
         message:"",
         user_not_genuine:true,
@@ -34,14 +37,7 @@ const app3 = new Vue({
         filename: "test_file",
         modify_db: false,
         ready_to_submit: false,
-        n_cols:{
-            eligible: 0,
-            pattern: 0
-        },
-        case_headers:{
-            eligible: [],
-            pattern: []
-        },
+
         eligible_two_table:false,
         pattern_two_table:false,
 
@@ -94,7 +90,26 @@ const app3 = new Vue({
         if(month < 10) month = "0" + String(month);
         if(date < 10) date = "0" + String(date);
         return (year+'-'+month+'-'+date);
+       },
+
+       scan() {
+        console.log("Scan function ran");
+        this.user_not_genuine = false;
+        this.ready_to_submit = true;
+        $.get('/sarkari',
+        function(data, status) {
+                    this.ready_to_submit = false;
+                    this.rawhtml = data;
+        }.bind(this)).fail(function() {
+            this.ready_to_submit = false;
+            this.rawhtml = "<h6 class = \"red\"><b>Error received ! <br>Wi-Fi connect kar betic...</b></h6>";
+          }.bind(this));
+       },
+
+       handle_depts(){
+           console.log("hello");
        }
+
    },
    computed: {
        validate_user_email(){

@@ -89,4 +89,14 @@ class SearchController extends Controller
     //       }
     //     return $results;
     // }
+
+    public function get_todos(){
+        $result = DB::table('todo')->get();
+        $todos = array();
+        foreach ($result as $item) {
+            array_push($todos, [$item->Work, $item->Priority]);
+        }
+        return response()->json($todos);
+    }
+
 }

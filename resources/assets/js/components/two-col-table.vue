@@ -28,7 +28,12 @@
 
 <script>
 
+import Datepicker from 'vuejs-datepicker';
+
 export default {
+   components: {
+    Datepicker
+   },
    data() {
       return {
 

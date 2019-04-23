@@ -10,7 +10,8 @@ class ExamCreator extends Controller
 
    public function test(Request $request){
       $inputs = $request->all();
-      return dd($inputs);
+      // <h3 class="text-center heading" ><-- Exam Dates --></h3> 
+      return dd((json_decode($inputs["jsono"])));
    }
 
     public function creator(Request $request){
@@ -27,6 +28,7 @@ class ExamCreator extends Controller
                   $dept = $request->dept;
                }
 
+               date_default_timezone_set("Asia/Kolkata");
                Exam::create([
                   'exam_name' => $request->exam_name,
                   'exam_link' => $request->exam_link,
@@ -34,7 +36,6 @@ class ExamCreator extends Controller
                   'next_check' => $request->next_check,
                   'status' => $request->status,
                   'completed_on' => $request->completed_on,
-
                   'dept' => $dept,
          
                   ]);
@@ -52,9 +53,17 @@ class ExamCreator extends Controller
             echo "</div>";
 
 
+            echo "\n\n<div id=\"job_details\">";
+            if($this->get_table('job', $inputs) != false){
+                  echo "\n\n<h3 class=\"text-center heading\"><-- " .$inputs['heading_word']. " Job Details --></h3> \n";
+                  printf("%s",$this->get_table('job', $inputs));
+                  echo $apply_online;
+            }
+            echo "</div>";
+
             
             echo "\n\n<div id=\"exam_date\">";
-               echo "\n\n<?php echo \$date; ?>\n";
+               echo "\n\n<h3 class=\"text-center heading\"><-- " .$inputs['heading_word']. " Dates --></h3> \n";
                printf("%s",$this->get_table('date', $inputs));
                echo $apply_online;
             echo "</div>";
@@ -63,7 +72,7 @@ class ExamCreator extends Controller
             
             echo "\n\n<div id=\"exam_fees\">";
                if($this->get_table('fees', $inputs) != false){
-                  echo "\n\n<?php echo \$fees; ?>\n";
+                  echo "\n\n<h3 class=\"text-center heading\" ><-- ".$inputs['heading_word']." Fees --></h3> \n";
                   printf("%s",$this->get_table('fees', $inputs));
                   echo "\n\n".$apply_online."\n\n";
                }
@@ -73,12 +82,12 @@ class ExamCreator extends Controller
          
             echo "\n\n<div id=\"exam_eligibility\">";
                if($this->get_table('eligible', $inputs)){
-                  echo "\n\n<?php echo \$eligibility; ?>\n";
+                  echo "\n\n<h3 class=\"text-center heading\" ><-- ".$inputs['heading_word']." Eligibility --></h3> \n";
                   printf("%s",$this->get_table('eligible', $inputs));
                   echo $apply_online;
                }
                else if($this->get_table('age_limit', $inputs) != false){
-                  echo "\n\n<?php echo \$eligibility; ?>\n";
+                  echo "\n\n<h3 class=\"text-center heading\" ><-- ".$inputs['heading_word']." Eligibility --></h3> \n";
                   echo "<p> <b>A.) Age Limit</b> </p>";
                   printf("%s",$this->get_table('age_limit', $inputs));
                   echo "<p> <b>B.) Qualification</b> </p>";
@@ -92,14 +101,14 @@ class ExamCreator extends Controller
                if(array_key_exists("pattern_block", $inputs)){
                   echo "\n\n<div id=\"exam_pattern\">";
                   if($this->get_table('pattern', $inputs) != false){
-                     echo "\n\n<?php echo \$pattern; ?>\n";
+                     echo "\n\n<h3 class=\"text-center heading\" ><-- ".$inputs['heading_word']." Pattern --></h3> \n";
                      echo $this->get_table('pattern', $inputs);
                      echo $this->get_notes("pattern", $inputs);
                      echo "\n<br>\n";
                      echo $apply_online;
                   }
                   else if($this->get_table('tier_1', $inputs) != false){
-                     echo "\n\n<?php echo \$pattern; ?>\n";
+                     echo "\n\n<h3 class=\"text-center heading\" ><-- ".$inputs['heading_word']." Pattern --></h3> \n";
                      echo "<p><b>".  parsed_cell_value($inputs["tier_1_heading"]) ."</b> </p>";
                      printf("%s",$this->get_table('tier_1', $inputs));
                      echo "<p><b>".  parsed_cell_value($inputs['tier_2_heading']) ."</b> </p>";
@@ -118,7 +127,7 @@ class ExamCreator extends Controller
                if(array_key_exists("selection_block", $inputs)){
                   echo "\n\n<div id=\"exam_selection\">";
                   if($this->get_table('selection', $inputs) != false){
-                     echo "\n\n<?php echo \$selection; ?>\n";
+                     echo "\n\n<h3 class=\"text-center heading\" ><-- ".$inputs['heading_word']." Selection --></h3> \n";
                      printf("%s",$this->get_table('selection', $inputs));
                      echo $this->get_notes("selection", $inputs);
                      echo "\n<br>\n";
@@ -133,7 +142,7 @@ class ExamCreator extends Controller
                if(array_key_exists("vacancies_block", $inputs)){
                   echo "\n\n<div id=\"exam_vacancies\">";
                   if($this->get_table('vacancies', $inputs) != false){
-                       echo "\n\n<?php echo \$vacancies; ?>\n";
+                       echo "\n\n<h3 class=\"text-center heading\" ><-- ".$inputs['heading_word']." Vacancies --></h3> \n";
                        printf("%s",$this->get_table('vacancies', $inputs));
                        echo $apply_online;
                   }
@@ -145,7 +154,7 @@ class ExamCreator extends Controller
                if(array_key_exists("centers_block", $inputs)){
                   echo "\n\n<div id=\"exam_centers\">";
                   if($this->get_table('centers', $inputs) != false){
-                       echo "\n\n<?php echo \$centers; ?>\n";
+                       echo "\n\n<h3 class=\"text-center heading\" ><-- ".$inputs['heading_word']." Centers --></h3> \n";
                        printf("%s",$this->get_table('centers', $inputs));
                        echo $apply_online;
                   }
@@ -156,7 +165,7 @@ class ExamCreator extends Controller
          
                echo "\n\n<div id=\"exam_links\">";
                   if($this->get_links('links', $inputs) != false){
-                     echo "\n\n<?php echo \$links; ?>\n";
+                     echo "\n\n<h3 class=\"text-center heading\" ><-- ".$inputs['heading_word']." Links --></h3> \n";
                      echo $apply_online;
                      printf("%s",$this->get_links('links', $inputs));
                   }
@@ -175,7 +184,7 @@ class ExamCreator extends Controller
 
                $content .= ob_get_contents();
                $content .= "\n\n @endsection\n\n";
-               $myfile = fopen("C:/xampp/blog/resources/views/exams/".$inputs["exam_name"].".blade.php", "w");
+               $myfile = fopen("C:/blog/resources/views/exams/".$inputs["exam_name"].".blade.php", "w");
                fwrite($myfile, $content);
                echo "</div>";
             

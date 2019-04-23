@@ -19,6 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         View::share('pill' , ' &nbsp&nbsp<span class="badge badge-pill badge-danger">New</span>  ');
 
+        View::share('job' , '<h3 class="text-center heading" ><-- Job Details --></h3> ');
         View::share('date' , '<h3 class="text-center heading" ><-- Exam Dates --></h3> ');
         View::share('fees' , '<h3 class="text-center heading" ><-- Exam Fees --></h3> ');
         View::share('eligibility' , '<h3 class="text-center heading" ><-- Exam Eligibility --></h3> ');

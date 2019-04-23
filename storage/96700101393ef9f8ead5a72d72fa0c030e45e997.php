@@ -1,8 +1,8 @@
 
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <nav class="navbar navbar-expand-lg navbar-light ">
 
         <a class="navbar-brand" href="/" style="color: white">
-          <img src="/images/logo_examdate.png" width="80" height="80" alt="logo">
+          <img src="/images/examdate-logo.png" alt="logo">
           ExamDate.in
         </a>
 

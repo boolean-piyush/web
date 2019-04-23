@@ -1,14 +1,12 @@
-@extends('layout')
-
- @section('title') 
+ <?php $__env->startSection('title'); ?> 
  	
- @endsection 
+ <?php $__env->stopSection(); ?> 
 
- @section('meta') 
+ <?php $__env->startSection('meta'); ?> 
  	
- @endsection 
+ <?php $__env->stopSection(); ?> 
 
- @section('content')
+ <?php $__env->startSection('content'); ?>
 
 
 
@@ -111,5 +109,7 @@
 
 </div>
 
- @endsection
+ <?php $__env->stopSection(); ?>
 
+
+<?php echo $__env->make('layout', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

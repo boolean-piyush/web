@@ -62,6 +62,8 @@
         <script src="/js/client.js"></script>
     <?php endif; ?>
     <script src="/js/app.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Amita">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Quattrocento+Sans">
 
 
     

@@ -8,11 +8,15 @@
     <form action="/page_maker" method="post" target="_blank">
         <?php echo e(csrf_field()); ?>
 
-
             <div class="row">
                 <div class="form-group col-5">
                     <label><b>Title</b></label>
                     <input type="text" name="title" class="form-control border border-success" placeholder="Title" autocomplete="off">
+                </div>
+
+                <div class="form-group col-5">
+                    <label><b>Heading First Word</b></label>
+                    <input type="text" name="heading_word" class="form-control border border-success" autocomplete="off">
                 </div>
 
                 <div class="form-group col-7">
@@ -62,6 +66,10 @@
                             </div>
                     </div><br>
 
+                    <?php echo $job ?>
+                    <dynamic-table section='job'></dynamic-table>
+                    <br><br>
+
             <?php echo $date ?>
             <two-col-table section="date"></two-col-table>
             <br><br>
@@ -98,14 +106,14 @@
                 <br>
                 <div v-if="pattern_two_table">
                     <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01"><b>Tier-1</b></label>
+                    <label class="input-group-text" ><b>Tier-1</b></label>
                     <input type="text" autocomplete="off" class="form-control" name="tier_1_heading" placeholder="Tier-1-heading">
                     </div>
                     
                     <dynamic-table section='tier_1'></dynamic-table>
                     <br><br>
                     <div class="input-group-prepend">
-                            <label class="input-group-text" for="inputGroupSelect01"><b>Tier-1</b></label>
+                            <label class="input-group-text" ><b>Tier-1</b></label>
                             <input type="text" autocomplete="off" class="form-control" name="tier_2_heading" placeholder="Tier-2-heading">
                     </div>
                     <dynamic-table section='tier_2'></dynamic-table>
@@ -156,15 +164,18 @@
         
                 <div class="input-group">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect01"><b>Department</b></label>
+                        <label class="input-group-text" ><b>Department</b></label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01" name="dept">
+                    <select multiple class = "custom-select"  v-model="depts">
                     <option v-for="department in departments" :value="department">{{department}}</option>
                     </select>
                 </div>
                 <div class="form-group">
+                        <br><p>You selected = <span class="small"><b>{{depts}}</b></span></p>
                     <label><input type="checkbox" v-on:click = "new_dept= (new_dept ? false:true)"> I have new Department to register</label>
-                    <input type="text" autocomplete="off" name="new_dept" v-if="new_dept" class="form-control border border-success" placeholder="Please specify here">
+                    <input type="text" autocomplete="off" v-if="new_dept" class="form-control border border-success" v-model="new_category" placeholder="Please specify here">
+                    <button v-if="new_dept" type="button" v-on:click="depts.push(new_category)">Add</button>
+                    <input type="hidden" name="depts" :value="JSON.stringify(depts)">
                 </div>
     
                 <div class="form-group">
@@ -174,12 +185,13 @@
     
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                        <label class="input-group-text" for="inputGroupSelect01"><b>Qualification</b></label>
+                        <label class="input-group-text" ><b>Qualification</b></label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01" name="qualification">
+                    <select class="custom-select"  name="qualification">
                     <option v-for="qualification in qualifications" :value="qualification">{{qualification}}</option>
                     </select>
                 </div>
+
     
                 <div class="form-group">
                     <label><b>Next Check</b></label>
@@ -187,9 +199,9 @@
     
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                    <label class="input-group-text" for="inputGroupSelect01"><b>Status</b></label>
+                    <label class="input-group-text" ><b>Status</b></label>
                     </div>
-                    <select class="custom-select" id="inputGroupSelect01" name="status">
+                    <select class="custom-select"  name="status">
                     <option v-for="stat in status" :value="stat">{{stat}}</option>
                     </select>
                 </div>
